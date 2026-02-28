@@ -1,8 +1,10 @@
 name: Sync to Gitee
 
 on:
-    repository_dispatch:
-        types: [sync]
+    push:
+        branches:
+            # 或者你想要同步的分支
+            - master
 
 jobs:
     sync:
