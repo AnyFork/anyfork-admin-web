@@ -1,0 +1,115 @@
+{
+    "name": "anyfork-admin-web",
+    "version": "1.0.0",
+    "private": true,
+    "description": "基于 Vite + Vue + TypeScript 构建的企业级Vue管理后台前端通用项目，集成 Nuxt UI、Pinia、VueRouter、Tailwind CSS、Alova 等核心技术，并通过 ESLint、Prettier、stylelint 保障代码规范，结合 husky、lint-staged、commitlint、commitizen、cz-git、conventional-changelog 实现提交规范与自动化日志生成，符合企业级项目开发标准。",
+    "author": {
+        "name": "anyfork",
+        "email": "anyfork@gmail.com"
+    },
+    "type": "module",
+    "scripts": {
+        "build": "vue-tsc -b --noEmit && vite build",
+        "changelog": "conventional-changelog -p commitlint.config.js -i CHANGELOG.md -s",
+        "changelog:all": "conventional-changelog -p commitlint.config.js -i CHANGELOG.md -s -r 0",
+        "commit": "git add . && git cz",
+        "commit-msg": "echo pnpm exec commitlint --edit $1 > .husky/commit-msg",
+        "dev": "vite --open",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "lint:lint-staged": "lint-staged",
+        "lint:style:fix": "stylelint '**/*.{css,vue,html}' --fix",
+        "lint:stylelint": "stylelint  '**/*.{css,vue,html}' --fix",
+        "pre-commit": "echo pnpm run lint:lint-staged > .husky/pre-commit",
+        "prepare": "husky",
+        "prettier": "prettier --write .",
+        "preview": "vite preview"
+    },
+    "lint-staged": {
+        "*.{js,ts,mjs,mts,tsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{cjs,json,jsonc}": [
+            "prettier --write"
+        ],
+        "*.vue": [
+            "eslint --fix",
+            "stylelint --fix --allow-empty-input",
+            "prettier --write"
+        ],
+        "*.{html,htm}": [
+            "prettier --write"
+        ],
+        "*.{scss,css,less}": [
+            "stylelint --fix --allow-empty-input",
+            "prettier --write"
+        ],
+        "*.{md,mdx}": [
+            "prettier --write"
+        ],
+        "*.{yaml,yml}": [
+            "prettier --write"
+        ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "node_modules/cz-git"
+        }
+    },
+    "dependencies": {
+        "vue": "^3.5.25"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^20.4.2",
+        "@commitlint/config-conventional": "^20.4.2",
+        "@eslint/js": "^10.0.1",
+        "@nabla/vite-plugin-eslint": "^3.0.0",
+        "@types/node": "^24.10.1",
+        "@typescript-eslint/eslint-plugin": "^8.56.1",
+        "@typescript-eslint/parser": "^8.56.1",
+        "@vitejs/plugin-vue": "^6.0.2",
+        "@vue/tsconfig": "^0.8.1",
+        "commitizen": "^4.3.1",
+        "conventional-changelog-cli": "^5.0.0",
+        "cz-git": "^1.12.0",
+        "eslint": "^10.0.2",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.5",
+        "eslint-plugin-vue": "^10.8.0",
+        "globals": "^17.3.0",
+        "husky": "^9.1.7",
+        "jiti": "^2.6.1",
+        "lint-staged": "^16.2.7",
+        "postcss-html": "^1.8.1",
+        "prettier": "^3.8.1",
+        "prettier-plugin-organize-imports": "^4.3.0",
+        "prettier-plugin-packagejson": "^3.0.0",
+        "rollup-plugin-visualizer": "^7.0.0",
+        "stylelint": "^17.4.0",
+        "stylelint-config-html": "^1.1.0",
+        "stylelint-config-recess-order": "^7.6.1",
+        "stylelint-config-recommended-vue": "^1.6.1",
+        "stylelint-config-standard": "^40.0.0",
+        "stylelint-order": "^7.0.1",
+        "typescript": "~5.9.3",
+        "typescript-eslint": "^8.56.1",
+        "unplugin-auto-import": "^21.0.0",
+        "unplugin-vue-components": "^31.0.0",
+        "vite": "^8.0.0-beta.13",
+        "vite-plugin-compression": "^0.5.1",
+        "vite-plugin-html": "^3.2.2",
+        "vite-plugin-vue-devtools": "^8.0.6",
+        "vue-eslint-parser": "^10.4.0",
+        "vue-tsc": "^3.1.5"
+    },
+    "engines": {
+        "node": ">=24.9.0",
+        "pnpm": ">=10.28.0"
+    },
+    "pnpm": {
+        "overrides": {
+            "vite": "^8.0.0-beta.13"
+        }
+    }
+}
