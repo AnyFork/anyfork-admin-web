@@ -1,27 +1,46 @@
 import eslintPlugin from '@nabla/vite-plugin-eslint'
+import ui from '@nuxt/ui/vite'
 import vue from '@vitejs/plugin-vue'
 import { visualizer } from 'rollup-plugin-visualizer'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
 import { defineConfig, loadEnv, type ConfigEnv } from 'vite'
 import viteCompression from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import { VueRouterAutoImports } from 'vue-router/unplugin'
+import VueRouter from 'vue-router/vite'
 // https://vite.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => {
     const env = loadEnv(mode, process.cwd(), '')
     return {
         plugins: [
+            VueRouter(),
             vue(),
-            //自动导入Composition API,https://github.com/antfu/unplugin-auto-import
-            AutoImport({
-                dts: 'src/types/auto-import.d.ts',
-                imports: ['vue']
-            }),
-            //自动导入组件，https://github.com/antfu/unplugin-vue-components
-            Components({
-                dts: 'src/types/components.d.ts',
-                dirs: ['src/components']
+            ui({
+                theme: {
+                    prefix: 'anyfork'
+                },
+                ui: {
+                    colors: {
+                        primary: 'green',
+                        neutral: 'slate'
+                    }
+                },
+                //@nuxt-ui内部已经集成了unplugin-auto-import，无需再安装，自动导入Composition API, @see https://github.com/antfu/unplugin-auto-import
+                autoImport: {
+                    dts: 'src/types/auto-import.d.ts',
+                    imports: ['vue', VueRouterAutoImports, '@vueuse/core'],
+                    eslintrc: {
+                        enabled: true,
+                        //.eslintrc-auto-import.json 是 unplugin-auto-import 自动生成的ESLint 全局变量声明 JSON 文件，专门用于让 ESLint 识别自动导入的 API（如 ref/useRoute 等），避免报 no-undef 错误
+                        filepath: './.eslintrc-auto-import.json',
+                        globalsPropValue: true
+                    }
+                },
+                //@nuxt-ui内部已经集成了unplugin-vue-components，无需在安装，自动导入组件, @see https://github.com/antfu/unplugin-vue-components
+                components: {
+                    dts: 'src/types/components.d.ts',
+                    dirs: ['src/components']
+                }
             }),
             //在html中创建ejs标签，官网地址：https://github.com/vbenjs/vite-plugin-html/blob/main/README.zh_CN.md
             createHtmlPlugin({

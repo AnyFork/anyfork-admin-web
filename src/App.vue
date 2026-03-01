@@ -1,15 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    const colorMode = useColorMode()
+</script>
 
 <template>
-    <div>
-        <a href="https://vite.dev" target="_blank">
-            <img src="/logo.svg" class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://vuejs.org/" target="_blank">
-            <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-        </a>
-    </div>
-    <HelloWorld msg="Vite + Vue" />
+    <UApp>
+        <UColorModeButton />
+        {{ colorMode }}
+        <RouterView />
+        <div class="anyfork:w-100 anyfork:h-100 anyfork:bg-primary logo"></div>
+        <UAlert title="Heads up!" />
+    </UApp>
 </template>
 
 <style scoped>

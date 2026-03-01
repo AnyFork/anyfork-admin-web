@@ -10,7 +10,14 @@
         "noUnusedParameters": true,
         "erasableSyntaxOnly": true,
         "noFallthroughCasesInSwitch": true,
-        "noUncheckedSideEffectImports": true
+        "noUncheckedSideEffectImports": true,
+        "moduleResolution": "Bundler",
+        "paths": {
+            "#build/ui/*": ["./node_modules/.nuxt-ui/ui/*"]
+        }
+    },
+    "vueCompilerOptions": {
+        "plugins": ["vue-router/volar/sfc-route-blocks", "vue-router/volar/sfc-typed-router"]
     },
     "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
