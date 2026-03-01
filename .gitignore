@@ -25,3 +25,10 @@ dist-ssr
 
 # ESLint 缓存
 .eslintcache
+
+
+# types下面部分动态生成的d.ts文件
+auto-import.d.ts
+components.d.ts
+typed-router.d.ts
+.eslintrc-auto-import.json

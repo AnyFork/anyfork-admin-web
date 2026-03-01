@@ -13,7 +13,10 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     const env = loadEnv(mode, process.cwd(), '')
     return {
         plugins: [
-            VueRouter(),
+            VueRouter({
+                //修改路由类型文件位置
+                dts: 'src/types/typed-router.d.ts'
+            }),
             vue(),
             ui({
                 theme: {

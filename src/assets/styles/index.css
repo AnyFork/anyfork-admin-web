@@ -1,2 +1,2 @@
-@import url('tailwindcss') prefix(anyfork);
-@import url('@nuxt/ui');
+@import 'tailwindcss' prefix(anyfork);
+@import '@nuxt/ui';

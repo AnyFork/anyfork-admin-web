@@ -1,14 +1,9 @@
-<script setup lang="ts">
-    const colorMode = useColorMode()
-</script>
+<script setup lang="ts"></script>
 
 <template>
     <UApp>
         <UColorModeButton />
-        {{ colorMode }}
         <RouterView />
-        <div class="anyfork:w-100 anyfork:h-100 anyfork:bg-primary logo"></div>
-        <UAlert title="Heads up!" />
     </UApp>
 </template>
 

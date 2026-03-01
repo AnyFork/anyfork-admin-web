@@ -15,8 +15,11 @@ export default {
         // 示例：允许使用 !important（默认禁止，新手可临时放开）
         'declaration-no-important': null,
         // 禁止使用未知的 CSS 属性（警告级别）
-        'property-no-unknown': [true, { severity: 'warning' }]
+        'property-no-unknown': [true, { severity: 'warning' }],
+        // 核心规则：允许 @import 使用字符串形式（而非强制 url()）
+        // 可选值：- 'string'：仅允许 @import 'xxx'（推荐，符合你的写法）,'off'：完全禁用该规则（不校验 @import 语法）
+        'import-notation': 'string'
     },
     // 忽略不需要校验的文件
-    ignoreFiles: ['node_modules/**/*', 'dist/**/*']
+    ignoreFiles: ['node_modules/**/*', 'dist/**/*', 'auto-import.d.ts', 'components.d.ts', 'typed-router.d.ts', '.eslintrc-auto-import.json']
 } satisfies Config

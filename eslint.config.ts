@@ -79,6 +79,6 @@ export default defineConfig([
     },
     // 6. 排除文件（全局生效），全局忽略规则（同时作用于ESLint和Prettier），可以不用单独配置.prettierignore和.eslintignore文件
     {
-        ignores: ['node_modules/**', 'dist/**', 'public/**', '.vscode/**']
+        ignores: ['node_modules/**', 'dist/**', 'public/**', '.vscode/**', 'auto-import.d.ts', 'components.d.ts', 'typed-router.d.ts', '.eslintrc-auto-import.json']
     }
 ])
