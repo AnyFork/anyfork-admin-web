@@ -1,4 +1,3 @@
-import eslintPlugin from '@nabla/vite-plugin-eslint'
 import ui from '@nuxt/ui/vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
@@ -6,6 +5,7 @@ import { visualizer } from 'rollup-plugin-visualizer'
 import { fileURLToPath } from 'url'
 import { defineConfig, loadEnv, type ConfigEnv } from 'vite'
 import viteCompression from 'vite-plugin-compression'
+import eslintPlugin from 'vite-plugin-eslint2'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import { VueRouterAutoImports } from 'vue-router/unplugin'
@@ -13,7 +13,7 @@ import VueRouter from 'vue-router/vite'
 // https://vite.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => {
     const env = loadEnv(mode, process.cwd(), '')
-    const { VITE_BASE_URL, VITE_DEV_PORT, VITE_BASIC_API_URL } = env
+    const { VITE_BASE_URL, VITE_DEV_PORT, VITE_BASIC_API_URL, VITE_BUILD_ENV } = env
     return {
         base: VITE_BASE_URL,
         // 设置开发服务器相关配置
@@ -144,8 +144,8 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                 // 收集 brotli 大小并将其显示
                 brotliSize: true
             }),
-            // 该包是用于配置Vite开发/构建阶段自动运行 ESLint 校验,不符合规范，启动时不会报错，页面刷新时会报错，https://github.com/nabla/vite-plugin-eslint
-            eslintPlugin()
+            //github action环境下build项目时，跳过eslint校验,根据环境变量决定是否需要eslintPlugin插件，该包是用于配置Vite开发/构建阶段自动运行 ESLint 校验,不符合规范，启动时不会报错，页面刷新时会报错，https://github.com/ModyQyW/vite-plugin-eslint2
+            VITE_BUILD_ENV !== 'ACTIONS' ? eslintPlugin({ build: true }) : undefined
         ]
     }
 })
