@@ -12,8 +12,14 @@
         "noFallthroughCasesInSwitch": true,
         "noUncheckedSideEffectImports": true,
         "moduleResolution": "Bundler",
+        // 核心配置：指定源码根目录（通常是 src）
+        "rootDir": "./src",
+        "baseUrl": ".",
         "paths": {
-            "#build/ui/*": ["./node_modules/.nuxt-ui/ui/*"]
+            "#build/ui/*": ["./node_modules/.nuxt-ui/ui/*"],
+            "@/*": ["src/*"],
+            "@pages/*": ["src/pages/*"],
+            "@assets/*": ["src/assets/*"]
         }
     },
     "vueCompilerOptions": {

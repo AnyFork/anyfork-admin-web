@@ -1,4 +1,13 @@
 <template>
-    <div>user</div>
+    <div>
+        <div>11111111111</div>
+        <RouterView />
+    </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    definePage({
+        meta: {
+            requiresAuth: true
+        }
+    })
+</script>

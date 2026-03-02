@@ -1,7 +1,9 @@
 import eslintPlugin from '@nabla/vite-plugin-eslint'
 import ui from '@nuxt/ui/vite'
 import vue from '@vitejs/plugin-vue'
+import path from 'path'
 import { visualizer } from 'rollup-plugin-visualizer'
+import { fileURLToPath } from 'url'
 import { defineConfig, loadEnv, type ConfigEnv } from 'vite'
 import viteCompression from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
@@ -11,9 +13,63 @@ import VueRouter from 'vue-router/vite'
 // https://vite.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => {
     const env = loadEnv(mode, process.cwd(), '')
+    const { VITE_BASE_URL, VITE_DEV_PORT, VITE_BASIC_API_URL } = env
     return {
+        base: VITE_BASE_URL,
+        // 设置开发服务器相关配置
+        server: {
+            host: true,
+            port: Number(VITE_DEV_PORT),
+            proxy: {
+                '/api': {
+                    target: VITE_BASIC_API_URL,
+                    changeOrigin: true
+                }
+            }
+        },
+        // 路径别名
+        resolve: {
+            alias: {
+                '@': fileURLToPath(new URL('./src', import.meta.url)),
+                '@pages': path.resolve(__dirname, 'src/pages'),
+                '@assets': path.resolve(__dirname, 'src/assets')
+            }
+        },
+        // 打包配置
+        build: {
+            //用于指定小于此阈值的资源文件（如图片、字体等）是否应内联到打包后的JavaScript文件中。默认情况下，所有小于4KB的资源文件会被内联为base64编码，以减少HTTP请求的数量‌
+            assetsInlineLimit: 4096,
+            //chunk大小预警阈值
+            chunkSizeWarningLimit: 2000,
+            rolldownOptions: {
+                output: {
+                    //打包移除sourcemap
+                    sourcemap: false,
+                    minify: {
+                        compress: {
+                            // 生产环境去除 console
+                            dropConsole: true,
+                            // 生产环境去除 debugger
+                            dropDebugger: true
+                        }
+                    },
+                    // 指定打包后的入口文件名规则
+                    entryFileNames: 'js/[name].js',
+                    // 分包chunk碎片文件命名规则
+                    chunkFileNames: 'js/[name].[hash].js',
+                    // 定义构建后的静态资源文件名
+                    assetFileNames: 'assets/[ext]/[name]-[hash][extname]'
+                }
+            }
+        },
         plugins: [
             VueRouter({
+                routesFolder: [
+                    {
+                        src: 'src/pages',
+                        path: VITE_BASE_URL.slice(1) + '/'
+                    }
+                ],
                 //修改路由类型文件位置
                 dts: 'src/types/typed-router.d.ts'
             }),
@@ -90,11 +146,6 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             }),
             // 该包是用于配置Vite开发/构建阶段自动运行 ESLint 校验,不符合规范，启动时不会报错，页面刷新时会报错，https://github.com/nabla/vite-plugin-eslint
             eslintPlugin()
-        ],
-        // 设置开发服务器相关配置
-        server: {
-            host: '0.0.0.0',
-            port: 9527
-        }
+        ]
     }
 })
