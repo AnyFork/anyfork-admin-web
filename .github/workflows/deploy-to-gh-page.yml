@@ -1,4 +1,4 @@
-name: Deploy Vue App to GitHub Pages and sync to gitee
+name: Deploy Vue App & Sync to Gitee
 
 on:
     # 当推送到master分支时触发部署
