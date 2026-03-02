@@ -1,0 +1,63 @@
+name: Deploy Vue App & Sync to Gitee
+
+on:
+    # 当推送到master分支时触发部署
+    push:
+        branches:
+            - master
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            pages: write
+        steps:
+            # 1. 拉取代码
+            - name: Checkout code
+              uses: actions/checkout@v6
+
+            # 2安装并配置pnpm
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  # 可指定你项目使用的 pnpm 版本
+                  version: 10
+                  run_install: false
+
+            # 2. 安装 Node.js
+            - name: Set up Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24
+                  cache: 'pnpm'
+
+            # 3. 安装依赖
+            - name: Install dependencies
+              run: pnpm install
+
+            # 4. 构建项目
+            - name: Build project
+              run: pnpm run build:no-lint
+
+            # 5. 部署到 gh-pages 分支（只上传 dist 内容）
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  # 明确指定部署 dist 目录
+                  publish_dir: ./dist
+                  # 强制覆盖旧内容，避免残留文件
+                  force_orphan: true
+
+            # 6. 同步代码至gitee
+            - name: Sync to Gitee
+              uses: wearerequired/git-mirror-action@master
+              env:
+                  # 注意在 Settings->Secrets 配置 GITEE_RSA_PRIVATE_KEY
+                  SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
+              with:
+                  # 注意替换为你的 GitHub 源仓库地址
+                  source-repo: git@github.com:AnyFork/anyfork-admin-web.git
+                  # 注意替换为你的 Gitee 目标仓库地址
+                  destination-repo: git@gitee.com:AnyFork/anyfork-admin-web.git

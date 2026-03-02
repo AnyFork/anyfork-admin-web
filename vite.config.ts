@@ -67,7 +67,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                 routesFolder: [
                     {
                         src: 'src/pages',
-                        path: VITE_BASE_URL.slice(1) + '/'
+                        path: '/'
                     }
                 ],
                 //修改路由类型文件位置
