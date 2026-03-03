@@ -13,9 +13,9 @@ import VueRouter from 'vue-router/vite'
 // https://vite.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => {
     const env = loadEnv(mode, process.cwd(), '')
-    const { VITE_BASE_URL, VITE_DEV_PORT, VITE_BASIC_API_URL, VITE_BUILD_ENV } = env
+    const { VITE_BASE_URL, VITE_DEV_PORT, VITE_BASIC_API_URL, VITE_BUILD_ENV, VITE_RUNTIME_ENV } = env
     return {
-        base: VITE_BASE_URL,
+        base: VITE_RUNTIME_ENV === 'netlify' ? '/' : VITE_BASE_URL,
         // 设置开发服务器相关配置
         server: {
             host: true,
