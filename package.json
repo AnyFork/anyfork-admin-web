@@ -10,8 +10,8 @@
     "type": "module",
     "scripts": {
         "build": "vue-tsc -b --noEmit && vite build",
+        "build:no-base": " vue-tsc --noEmit && cross-env VITE_BUILD_ENV=ACTIONS VITE_BASE_FLAG=0 vite build",
         "build:no-lint": "vue-tsc --noEmit && cross-env VITE_BUILD_ENV=ACTIONS vite build",
-        "build:on-netlify": "vue-tsc --noEmit && cross-env VITE_BUILD_ENV=ACTIONS VITE_RUNTIME_ENV=netlify vite build",
         "changelog": "conventional-changelog -p commitlint.config.js -i CHANGELOG.md -s",
         "changelog:all": "conventional-changelog -p commitlint.config.js -i CHANGELOG.md -s -r 0",
         "commit": "git add . && git cz",
