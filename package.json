@@ -122,7 +122,9 @@
         },
         "ignoredBuiltDependencies": [
             "esbuild",
-            "vue-demi"
+            "sharp",
+            "vue-demi",
+            "workerd"
         ]
     }
 }
