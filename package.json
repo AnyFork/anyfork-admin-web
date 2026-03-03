@@ -16,6 +16,7 @@
         "changelog:all": "conventional-changelog -p commitlint.config.js -i CHANGELOG.md -s -r 0",
         "commit": "git add . && git cz",
         "commit-msg": "echo pnpm exec commitlint --edit $1 > .husky/commit-msg",
+        "deploy:cloudflare": "pnpm run build:no-base && wrangler deploy",
         "dev": "vite --open",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
@@ -25,7 +26,8 @@
         "pre-commit": "echo pnpm run lint:lint-staged > .husky/pre-commit",
         "prepare": "husky",
         "prettier": "prettier --write .",
-        "preview": "vite preview"
+        "preview": "pnpm run build:no-base && wrangler dev",
+        "preview:local": "vite preview"
     },
     "lint-staged": {
         "*.{js,ts,mjs,mts,tsx}": [
@@ -67,6 +69,7 @@
         "vue-router": "^5.0.3"
     },
     "devDependencies": {
+        "@cloudflare/vite-plugin": "^1.25.6",
         "@commitlint/cli": "^20.4.2",
         "@commitlint/config-conventional": "^20.4.2",
         "@eslint/js": "^10.0.1",
@@ -106,7 +109,8 @@
         "vite-plugin-html": "^3.2.2",
         "vite-plugin-vue-devtools": "^8.0.6",
         "vue-eslint-parser": "^10.4.0",
-        "vue-tsc": "^3.1.5"
+        "vue-tsc": "^3.1.5",
+        "wrangler": "^4.69.0"
     },
     "engines": {
         "node": ">=24.9.0",

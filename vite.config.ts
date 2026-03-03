@@ -1,3 +1,4 @@
+import { cloudflare } from '@cloudflare/vite-plugin'
 import ui from '@nuxt/ui/vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
@@ -145,6 +146,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                 // 收集 brotli 大小并将其显示
                 brotliSize: true
             }),
+            cloudflare(),
             //github action环境下build项目时，跳过eslint校验,根据环境变量决定是否需要eslintPlugin插件，该包是用于配置Vite开发/构建阶段自动运行 ESLint 校验,不符合规范，启动时不会报错，页面刷新时会报错，https://github.com/ModyQyW/vite-plugin-eslint2
             VITE_BUILD_ENV !== 'ACTIONS' ? eslintPlugin({ build: true }) : undefined
         ]

@@ -32,3 +32,7 @@ auto-import.d.ts
 components.d.ts
 typed-router.d.ts
 .eslintrc-auto-import.json
+
+
+# wrangler files
+.wrangler
