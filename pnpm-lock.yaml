@@ -13,6 +13,9 @@ importers:
             '@nuxt/ui':
                 specifier: ^4.5.1
                 version: 4.5.1(@tiptap/extensions@3.20.0(@tiptap/core@3.20.0(@tiptap/pm@3.20.0))(@tiptap/pm@3.20.0))(@tiptap/y-tiptap@3.0.2(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.6)(y-protocols@1.0.7(yjs@13.6.29))(yjs@13.6.29))(embla-carousel@8.6.0)(tailwindcss@4.2.1)(typescript@5.9.3)(vite@8.0.0-beta.16(@types/node@24.11.0)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-router@5.0.3(@vue/compiler-sfc@3.5.29)(vue@3.5.29(typescript@5.9.3)))(vue@3.5.29(typescript@5.9.3))(yjs@13.6.29)
+            '@vue/shared':
+                specifier: ^3.5.29
+                version: 3.5.29
             '@vueuse/core':
                 specifier: ^14.2.1
                 version: 14.2.1(vue@3.5.29(typescript@5.9.3))
@@ -5430,7 +5433,7 @@ snapshots:
 
     '@nuxt/schema@4.3.1':
         dependencies:
-            '@vue/shared': 3.5.28
+            '@vue/shared': 3.5.29
             defu: 6.1.4
             pathe: 2.0.3
             pkg-types: 2.3.0
@@ -6146,7 +6149,7 @@ snapshots:
             '@babel/types': 7.29.0
             '@vue/babel-helper-vue-transform-on': 1.5.0
             '@vue/babel-plugin-resolve-type': 1.5.0(@babel/core@7.29.0)
-            '@vue/shared': 3.5.28
+            '@vue/shared': 3.5.29
         optionalDependencies:
             '@babel/core': 7.29.0
         transitivePeerDependencies:
@@ -6260,7 +6263,7 @@ snapshots:
         dependencies:
             '@volar/language-core': 2.4.28
             '@vue/compiler-dom': 3.5.28
-            '@vue/shared': 3.5.28
+            '@vue/shared': 3.5.29
             alien-signals: 3.1.2
             muggle-string: 0.4.1
             path-browserify: 1.0.1

@@ -63,6 +63,7 @@
     },
     "dependencies": {
         "@nuxt/ui": "^4.5.1",
+        "@vue/shared": "^3.5.29",
         "@vueuse/core": "^14.2.1",
         "alova": "^3.5.1",
         "tailwindcss": "^4.2.1",

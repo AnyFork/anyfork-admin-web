@@ -74,7 +74,9 @@ export default defineConfig([
             // TS未使用变量警告
             '@typescript-eslint/no-unused-vars': 'error',
             // Vue未使用组件（质量规则）
-            'vue/no-unused-components': 'warn'
+            'vue/no-unused-components': 'warn',
+            // 关闭从vue导出部分包，例如：@vue/shared
+            'vue/prefer-import-from-vue': 'off'
         }
     },
     // 6. 排除文件（全局生效），全局忽略规则（同时作用于ESLint和Prettier），可以不用单独配置.prettierignore和.eslintignore文件

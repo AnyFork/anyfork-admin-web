@@ -77,9 +77,6 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             }),
             vue(),
             ui({
-                theme: {
-                    prefix: 'anyfork'
-                },
                 ui: {
                     colors: {
                         primary: 'green',
