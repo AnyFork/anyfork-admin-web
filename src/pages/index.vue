@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    const { loading, data, send: sendRequest } = useRequest(alova.Get('/api/weather/city/101030100'), { immediate: false })
+    const { loading, data, send: sendRequest } = useRequest(alova.Get('/posts'), { immediate: false })
     const handlerEvent = async (): Promise<void> => {
         await sendRequest()
     }

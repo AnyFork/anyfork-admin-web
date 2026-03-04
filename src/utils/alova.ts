@@ -6,7 +6,7 @@ export const alova = createAlova({
     //alova实例id,多个实例必须唯一
     id: 'default',
     //统一请求基础路径
-    baseURL: '',
+    baseURL: import.meta.env.VITE_BASIC_API_URL,
     //请求超时时间，默认不超时
     timeout: 10000,
     //状态管理钩子，VueHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
