@@ -15,7 +15,7 @@
         "changelog": "conventional-changelog -p commitlint.config.js -i CHANGELOG.md -s",
         "changelog:all": "conventional-changelog -p commitlint.config.js -i CHANGELOG.md -s -r 0",
         "commit": "git add . && git cz",
-        "commit-msg": "echo pnpm exec commitlint --edit $1 > .husky/commit-msg",
+        "commit-msg": "echo pnpm exec commitlint --edit $1",
         "deploy:cloudflare": "pnpm run build:no-base && wrangler deploy",
         "dev": "vite --open",
         "lint": "eslint .",
@@ -62,22 +62,22 @@
         }
     },
     "dependencies": {
-        "@nuxt/ui": "^4.5.0",
+        "@nuxt/ui": "^4.5.1",
         "@vueuse/core": "^14.2.1",
         "tailwindcss": "^4.2.1",
-        "vue": "^3.5.25",
+        "vue": "^3.5.29",
         "vue-router": "^5.0.3"
     },
     "devDependencies": {
-        "@cloudflare/vite-plugin": "^1.25.6",
-        "@commitlint/cli": "^20.4.2",
-        "@commitlint/config-conventional": "^20.4.2",
+        "@cloudflare/vite-plugin": "^1.26.0",
+        "@commitlint/cli": "^20.4.3",
+        "@commitlint/config-conventional": "^20.4.3",
         "@eslint/js": "^10.0.1",
-        "@types/node": "^24.10.1",
+        "@types/node": "^24.11.0",
         "@typescript-eslint/eslint-plugin": "^8.56.1",
         "@typescript-eslint/parser": "^8.56.1",
-        "@vitejs/plugin-vue": "^6.0.2",
-        "@vue/tsconfig": "^0.8.1",
+        "@vitejs/plugin-vue": "^6.0.4",
+        "@vue/tsconfig": "^0.9.0",
         "commitizen": "^4.3.1",
         "conventional-changelog-cli": "^5.0.0",
         "cross-env": "^10.1.0",
@@ -86,15 +86,15 @@
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-prettier": "^5.5.5",
         "eslint-plugin-vue": "^10.8.0",
-        "globals": "^17.3.0",
+        "globals": "^17.4.0",
         "husky": "^9.1.7",
         "jiti": "^2.6.1",
-        "lint-staged": "^16.2.7",
+        "lint-staged": "^16.3.2",
         "postcss-html": "^1.8.1",
         "prettier": "^3.8.1",
         "prettier-plugin-organize-imports": "^4.3.0",
         "prettier-plugin-packagejson": "^3.0.0",
-        "rollup-plugin-visualizer": "^7.0.0",
+        "rollup-plugin-visualizer": "^7.0.1",
         "stylelint": "^17.4.0",
         "stylelint-config-html": "^1.1.0",
         "stylelint-config-recess-order": "^7.6.1",
@@ -103,14 +103,14 @@
         "stylelint-order": "^7.0.1",
         "typescript": "~5.9.3",
         "typescript-eslint": "^8.56.1",
-        "vite": "^8.0.0-beta.13",
+        "vite": "^8.0.0-beta.16",
         "vite-plugin-compression": "^0.5.1",
         "vite-plugin-eslint2": "^5.0.5",
         "vite-plugin-html": "^3.2.2",
-        "vite-plugin-vue-devtools": "^8.0.6",
+        "vite-plugin-vue-devtools": "^8.0.7",
         "vue-eslint-parser": "^10.4.0",
-        "vue-tsc": "^3.1.5",
-        "wrangler": "^4.69.0"
+        "vue-tsc": "^3.2.5",
+        "wrangler": "^4.70.0"
     },
     "engines": {
         "node": ">=24.9.0",
@@ -118,7 +118,7 @@
     },
     "pnpm": {
         "overrides": {
-            "vite": "^8.0.0-beta.13"
+            "vite": "^8.0.0-beta.16"
         },
         "ignoredBuiltDependencies": [
             "esbuild",
