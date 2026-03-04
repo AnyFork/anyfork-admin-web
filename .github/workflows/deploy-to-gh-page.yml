@@ -38,7 +38,7 @@ jobs:
 
             # 4. 构建项目
             - name: Build project
-              run: pnpm run build:no-lint
+              run: pnpm run build:no-base
 
             # 5. 部署到 gh-pages 分支（只上传 dist 内容）
             - name: Deploy to GitHub Pages
@@ -49,6 +49,8 @@ jobs:
                   publish_dir: ./dist
                   # 强制覆盖旧内容，避免残留文件
                   force_orphan: true
+                  # 添加cname文件到gh-pages分支
+                  cname: github.jfork.top
 
             # 6. 同步代码至gitee
             - name: Sync to Gitee
