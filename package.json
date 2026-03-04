@@ -64,6 +64,7 @@
     "dependencies": {
         "@nuxt/ui": "^4.5.1",
         "@vueuse/core": "^14.2.1",
+        "alova": "^3.5.1",
         "tailwindcss": "^4.2.1",
         "vue": "^3.5.29",
         "vue-router": "^5.0.3"
@@ -117,6 +118,11 @@
         "pnpm": ">=10.28.0"
     },
     "pnpm": {
+        "peerDependencyRules": {
+            "allowedVersions": {
+                "vue-router": ">=4.0.0"
+            }
+        },
         "overrides": {
             "vite": "^8.0.0-beta.16"
         },

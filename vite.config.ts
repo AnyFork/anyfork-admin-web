@@ -89,7 +89,17 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                 //@nuxt-ui内部已经集成了unplugin-auto-import，无需再安装，自动导入Composition API, @see https://github.com/antfu/unplugin-auto-import
                 autoImport: {
                     dts: 'src/types/auto-import.d.ts',
-                    imports: ['vue', VueRouterAutoImports, '@vueuse/core'],
+                    // 自动本地导入文件目录路径
+                    dirs: ['src/utils'],
+                    imports: [
+                        'vue',
+                        VueRouterAutoImports,
+                        '@vueuse/core',
+                        {
+                            alova: ['createAlova'],
+                            'alova/client': ['useRequest', 'useWatcher', 'useFetcher']
+                        }
+                    ],
                     eslintrc: {
                         enabled: true,
                         //.eslintrc-auto-import.json 是 unplugin-auto-import 自动生成的ESLint 全局变量声明 JSON 文件，专门用于让 ESLint 识别自动导入的 API（如 ref/useRoute 等），避免报 no-undef 错误
