@@ -1,0 +1,1 @@
+import{k as e,u as t}from"./runtime-core.esm-bundler.DP9JRyB1.js";import{t as n}from"./index.js";var r={};function i(n,r){return e(),t(`div`,null,`3333`)}var a=n(r,[[`render`,i]]);export{a as default};
